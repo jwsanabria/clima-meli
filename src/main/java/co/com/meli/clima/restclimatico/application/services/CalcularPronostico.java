@@ -107,7 +107,7 @@ public class CalcularPronostico {
         return sistemaSolar;
     }
 
-    public Boolean determinarSequia(Map<String, InfoPlanetaria> sistemaSolar, InfoPlanetaria infoPlanetariaRef, int dia){
+    private Boolean determinarSequia(Map<String, InfoPlanetaria> sistemaSolar, InfoPlanetaria infoPlanetariaRef, int dia){
 
         Boolean sequia = true;
 
@@ -126,7 +126,7 @@ public class CalcularPronostico {
     }
 
 
-    public Boolean determinarLluvia(Coordenada coordRef, Coordenada coordPuntoA, Coordenada coordPuntoB){
+    private Boolean determinarLluvia(Coordenada coordRef, Coordenada coordPuntoA, Coordenada coordPuntoB){
         Boolean lluvia = false;
 
         Double perimetro = calcularPerimetro(coordPuntoA, coordPuntoB, coordRef);
@@ -143,7 +143,7 @@ public class CalcularPronostico {
     }
 
 
-    public Boolean determinarCondOptimas(Coordenada coordRef, Coordenada coordPuntoA, Coordenada coordPuntoB){
+    private Boolean determinarCondOptimas(Coordenada coordRef, Coordenada coordPuntoA, Coordenada coordPuntoB){
         Boolean condOptimas = false;
         Double pendiente = calcularPendiente(coordRef, coordPuntoA);
         Double complemento = complemento(coordRef, pendiente);
@@ -187,7 +187,7 @@ public class CalcularPronostico {
         registrarPronostico(mapCondiciones);
     }
 
-    public Coordenada calcularVector(Coordenada coord1, Coordenada coord2){
+    private Coordenada calcularVector(Coordenada coord1, Coordenada coord2){
         Coordenada resultado = new Coordenada(0.0, 0.0);
         resultado.setX(coord2.getX() - coord1.getX());
         resultado.setY(coord2.getY() - coord1.getY());
@@ -195,7 +195,7 @@ public class CalcularPronostico {
         return resultado;
     }
 
-    public Double calcularPonderancion1(Coordenada vectorD, Coordenada vectorE, Coordenada puntoOrigen, Coordenada punto){
+    private Double calcularPonderancion1(Coordenada vectorD, Coordenada vectorE, Coordenada puntoOrigen, Coordenada punto){
         Double resultado;
         try{
             resultado = vectorE.getX()*(puntoOrigen.getY()-punto.getY()) + vectorE.getY() * (punto.getX()- puntoOrigen.getX());
@@ -208,7 +208,7 @@ public class CalcularPronostico {
         return resultado;
     }
 
-    public Double calcularPonderacion2(Double w1, Coordenada vectorD, Coordenada vectorE, Coordenada puntoOrigen, Coordenada punto){
+    private Double calcularPonderacion2(Double w1, Coordenada vectorD, Coordenada vectorE, Coordenada puntoOrigen, Coordenada punto){
         Double resultado;
         try{
             resultado = (punto.getY()- puntoOrigen.getY() - w1 * vectorD.getY())+vectorE.getY();
@@ -220,14 +220,14 @@ public class CalcularPronostico {
         return resultado;
     }
 
-    public Double calcularPerimetro(Coordenada puntoA, Coordenada puntoB, Coordenada puntoC){
+    private Double calcularPerimetro(Coordenada puntoA, Coordenada puntoB, Coordenada puntoC){
         Double resultado = Math.sqrt(Math.pow(puntoA.getX()-puntoB.getX(), 2)+Math.pow(puntoA.getY()-puntoB.getY(), 2));
         resultado += Math.sqrt(Math.pow(puntoB.getX()-puntoC.getX(), 2)+Math.pow(puntoB.getY()-puntoC.getY(), 2));
         resultado += Math.sqrt(Math.pow(puntoC.getX()-puntoA.getX(), 2)+Math.pow(puntoC.getY()-puntoA.getY(), 2));
         return resultado;
     }
 
-    public Double calcularPendiente(Coordenada puntoA, Coordenada puntoB){
+    private Double calcularPendiente(Coordenada puntoA, Coordenada puntoB){
         Double resultado = 0.0;
 
         try{
@@ -239,11 +239,11 @@ public class CalcularPronostico {
         return resultado;
     }
 
-    public Double complemento(Coordenada coord, Double pendiente){
+    private Double complemento(Coordenada coord, Double pendiente){
         return coord.getY()-(pendiente * coord.getX());
     }
 
-    public Boolean validarPuntoEnRecta(Coordenada punto, Double pendiente, Double complemento){
+    private Boolean validarPuntoEnRecta(Coordenada punto, Double pendiente, Double complemento){
         Boolean resultado = false;
 
         if(pendiente * punto.getX() + complemento == punto.getY()){
