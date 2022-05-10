@@ -6,6 +6,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @ComponentScan("co.com.meli.clima.restclimatico.infrastructure.restcontroller")
+@ComponentScan("co.com.meli.clima.restclimatico.infrastructure.repository")
 public class RestClimaticoApplication {
 
 	public static void main(String[] args) {
