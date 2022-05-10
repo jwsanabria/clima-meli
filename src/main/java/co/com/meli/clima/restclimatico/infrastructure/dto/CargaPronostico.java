@@ -8,4 +8,12 @@ import lombok.Data;
 public class CargaPronostico {
     private String idPlaneta;
     private String anios;
+
+    @Override
+    public String toString() {
+        return "{" +
+                "idPlaneta='" + idPlaneta + '\'' +
+                ", anios='" + anios + '\'' +
+                '}';
+    }
 }

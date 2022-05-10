@@ -2,6 +2,7 @@ package co.com.meli.clima.restclimatico.infrastructure.rabbitmq;
 
 import co.com.meli.clima.restclimatico.application.services.CalcularPronostico;
 import co.com.meli.clima.restclimatico.domain.entity.Pronostico;
+import co.com.meli.clima.restclimatico.infrastructure.dto.CargaPronostico;
 import co.com.meli.clima.restclimatico.infrastructure.repository.PronosticoRepository;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
@@ -22,15 +23,14 @@ public class PronosticoJobConsumer {
     }
 
     @RabbitListener(queues = "${pronostico.amqp.queue}")
-    public void procesarPronostico(@NotNull String message){
-        log.info("Consumer> " + message);
+    public void procesarPronostico(String message){
         if(message.contains(":")) {
             String[] array = message.split(":");
             log.info(" [x] Received '" + message + "'");
             try {
-                this.calcularPronostico.realizarPronostico(Integer.getInteger(array[0]), Integer.getInteger(array[1]));
+                this.calcularPronostico.realizarPronostico(Integer.valueOf(array[0]), Integer.valueOf(array[1]));
             }catch (Exception e){
-                log.warn("No se puede ejecutar el pronostico");
+                log.warn(e.getMessage());
             }
         }
 

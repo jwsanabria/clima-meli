@@ -35,7 +35,7 @@ public class InMensaje {
 
             byte[] body = msg.getBytes("UTF-8");
             channel.basicPublish("", queueName, MessageProperties.PERSISTENT_TEXT_PLAIN, body);
-            logger.info("Message Sent: " + msg);
+            logger.info(" [>] Sent: " + msg);
             connection.close();
 
             resultado =  "Message Sent: " + msg;

@@ -31,11 +31,11 @@ public class PronosticoController {
 
     @PostMapping("/clima")
     public String cargarPronostico(@RequestBody CargaPronostico cargaPronostico){
-        try {
+        /*try {
             calcularPronostico.realizarPronostico(Integer.valueOf(cargaPronostico.getIdPlaneta()), Integer.valueOf(cargaPronostico.getAnios()));
         }catch(Exception ex){
             log.warn("No se pudo generar el pronostico");
-        }
+        }*/
         return inMensaje.enviarMensaje(cargaPronostico.getIdPlaneta() + ":" + cargaPronostico.getAnios());
     }
 }
