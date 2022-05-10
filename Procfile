@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -Dserver.port=18080 -Dspring.profiles.active=default -jar target/rest-climatico-0.0.1-SNAPSHOT.jar
+web: java $JAVA_OPTS -Dspring.profiles.active=default -jar target/rest-climatico-0.0.1-SNAPSHOT.jar
