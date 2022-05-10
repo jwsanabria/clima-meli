@@ -31,6 +31,6 @@ public class PronosticoJobConsumer {
                 log.warn("No se puede ejecutar el pronostico");
             }
         }
-        
+
     }
 }
