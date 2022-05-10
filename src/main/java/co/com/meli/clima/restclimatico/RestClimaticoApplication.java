@@ -13,5 +13,4 @@ public class RestClimaticoApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(RestClimaticoApplication.class, args);
 	}
-
 }
