@@ -24,6 +24,7 @@ public class PronosticoJobConsumer {
 
     @RabbitListener(queues = "${pronostico.amqp.queue}")
     public void procesarPronostico(String message){
+        log.info("Consumer > " + message);
         if(message.contains(":")) {
             String[] array = message.split(":");
             log.info(" [x] Received '" + message + "'");

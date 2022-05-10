@@ -30,8 +30,12 @@ public class PronosticoController {
     private String destino;
 
     @GetMapping("/clima")
-    public Pronostico pronostico(@RequestParam(value="dia", defaultValue = "1") String dia){
-        return pronosticoRepository.findById(Integer.valueOf(dia));
+    public Pronostico pronostico(@RequestParam(value="dia", defaultValue = "1") String dia)throws PronosticoNotFoundExcepcion{
+        Pronostico pronostico = pronosticoRepository.findById(Integer.valueOf(dia));
+        if(pronostico==null){
+            throw new PronosticoNotFoundExcepcion(Integer.valueOf(dia));
+        }
+        return pronostico;
     }
 
     @PostMapping("/clima")
