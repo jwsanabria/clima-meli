@@ -7,4 +7,5 @@ public interface CommonRepository<T> {
     public void delete(T domain);
     public T findById(Integer id);
     public Iterable<T> findAll();
+
 }

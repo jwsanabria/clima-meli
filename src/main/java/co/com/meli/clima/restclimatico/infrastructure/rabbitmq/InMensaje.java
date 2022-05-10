@@ -4,6 +4,7 @@ import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.MessageProperties;
+import org.springframework.beans.factory.annotation.Value;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -14,7 +15,7 @@ import java.util.Map;
 public class InMensaje {
     final static Logger logger = LoggerFactory.getLogger(InMensaje.class);
 
-    public String enviarMensaje(String msg){
+    public String enviarMensaje(String queueName, String msg){
         String resultado = "";
         try {
             ConnectionFactory factory = new ConnectionFactory();
@@ -27,7 +28,7 @@ public class InMensaje {
 
             Connection connection = factory.newConnection();
             Channel channel = connection.createChannel();
-            String queueName = "work-queue-1";
+
             Map<String, Object> params = new HashMap<String, Object>();
             params.put("x-ha-policy", "all");
             channel.queueDeclare(queueName, true, false, false, params);

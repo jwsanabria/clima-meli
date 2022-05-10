@@ -152,7 +152,16 @@ public class CalcularPronostico {
         return condOptimas;
     }
 
+    private void eliminarData(){
+        Iterable<Pronostico> it = pronosticoRepository.findAll();
+        while(it.iterator().hasNext()){
+            Pronostico p = it.iterator().next();
+            pronosticoRepository.delete(p);
+        }
+    }
+
     public void realizarPronostico(Integer idPlaneta, int anios) throws Exception{
+        eliminarData();
         planetaReferencia(idPlaneta);
         int diasRef = calcularDias(planetaRef, anios);
 

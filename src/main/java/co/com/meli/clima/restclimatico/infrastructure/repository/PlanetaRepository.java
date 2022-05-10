@@ -20,6 +20,7 @@ public class PlanetaRepository implements CommonRepository<Planeta> {
     private static final String SQL_QUERY_FIND_BY_ID = SQL_QUERY_FIND_ALL + " where id = :id";
     private static final String SQL_UPDATE = "update planeta set nombre = :nombre, radio = :radio, velocidad = :velocidad, horario = :horario where id = :id";
     private static final String SQL_DELETE = "delete from planeta where id = :id";
+
     private final NamedParameterJdbcTemplate jdbcTemplate;
 
     public PlanetaRepository(NamedParameterJdbcTemplate jdbcTemplate){
@@ -87,4 +88,5 @@ public class PlanetaRepository implements CommonRepository<Planeta> {
     public Iterable<Planeta> findAll() {
         return this.jdbcTemplate.query(SQL_QUERY_FIND_ALL, toDoRowMapper);
     }
+
 }
